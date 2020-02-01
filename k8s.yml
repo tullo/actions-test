@@ -1,33 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-world
+  name: action-test
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-world
+      app: action-test
   template:
     metadata:
       labels:
-        app: hello-world
+        app: action-test
     spec:
       containers:
-      - image: ramiro/hello-world:latest
-        name: hello-world
+      - image: tullo/action-test:latest
+        name: action-test
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-world
+  name: action-test
   annotations:
     dev.okteto.com/auto-ingress: "true"
 spec:
   type: ClusterIP  
   ports:
-  - name: "hello-world"
+  - name: "action-test"
     port: 80
   selector:
-    app: hello-world
+    app: action-test
