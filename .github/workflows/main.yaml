@@ -39,7 +39,7 @@ jobs:
       with:
         namespace: tullo
         manifest: k8s.yml
-        tag: ${{ secrets.DOCKER_USERNAME }}/action-test:${{ github.sha }}
+        tag: registry.cloud.okteto.net/tullo/action-test:${{ github.sha }}
         waitOn: deployment/action-test
     
     - name: Verify
