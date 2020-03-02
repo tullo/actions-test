@@ -33,14 +33,15 @@ jobs:
         namespace: tullo
     
     - name: Deploy and Wait
-      uses: okteto/actions/deploy@v3
+      uses: tullo/actions/deploy@master
       env:
         KUBECONFIG: ${{ steps.namespace.outputs.kubeconfig }}  
       with:
         namespace: tullo
         manifest: k8s.yml
-        tag: registry.cloud.okteto.net/tullo/action-test:${{ github.sha }}
+        tag: tullo/action-test:${{ github.sha }}
         waitOn: deployment/action-test
+        registry: registry.cloud.okteto.net
     
     - name: Verify
       uses: srt32/uptime@master
