@@ -33,7 +33,7 @@ jobs:
         namespace: tullo
     
     - name: Deploy and Wait
-      uses: tullo/actions/deploy@master
+      uses: okteto/actions/deploy@master
       env:
         KUBECONFIG: ${{ steps.namespace.outputs.kubeconfig }}  
       with:
